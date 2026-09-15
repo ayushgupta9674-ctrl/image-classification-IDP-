@@ -1,212 +1,372 @@
-AI Image Classification System
-An AI-powered Image Classification Web Application that automatically analyzes uploaded images and predicts what they contain.
+# AI Image Classification System
 
-The project combines YOLO-based image classification with SmolVLM for intelligent image understanding and provides a simple web interface for users to upload and analyze images.
+An AI-powered **Image Classification Web Application** that analyzes uploaded images and predicts their category using **YOLO** and **SmolVLM**.
 
-Features
-Upload JPG, JPEG, and PNG images
-AI-powered image classification
-Automatic prediction of image categories
-Uses YOLO for image classification
-Uses SmolVLM-500M-Instruct for image understanding
-User-friendly web interface
-Fast local inference
-Displays prediction results with confidence
-Runs completely on your local machine
-No image data needs to be uploaded to an external server
-Tech Stack
-AI / Machine Learning
-Python
-PyTorch
-Ultralytics YOLO
-Hugging Face Transformers
-SmolVLM-500M-Instruct
-Backend
-Flask
-Frontend
-HTML
-CSS
-JavaScript
-Libraries
+The system provides a simple web interface where users can upload an image and receive an AI-generated classification result along with a confidence score and image understanding.
+
+---
+
+##  Features
+
+*  Upload **JPG, JPEG, and PNG** images
+*  AI-powered image classification
+*  Custom-trained **YOLO classification model**
+*  Image understanding using **SmolVLM-500M-Instruct**
+*  Displays predicted class and confidence score
+*  Simple and user-friendly web interface
+*  Fast local inference
+*  Images can be processed locally without sending them to an external server
+*  Flask-based backend
+*  HTML, CSS and JavaScript frontend
+
+---
+
+##  Tech Stack
+
+### Artificial Intelligence / Machine Learning
+
+* **Python**
+* **PyTorch**
+* **Ultralytics YOLO**
+* **Hugging Face Transformers**
+* **SmolVLM-500M-Instruct**
+
+### Backend
+
+* **Flask**
+
+### Frontend
+
+* **HTML5**
+* **CSS3**
+* **JavaScript**
+
+### Python Libraries
+
+```text
 torch
+torchvision
 transformers
 Pillow
 ultralytics
 flask
-Project Structure
+```
+
+---
+
+##  Models Used
+
+### 1. YOLO Image Classification
+
+The primary classification is performed using a custom-trained **YOLO classification model**.
+
+The trained model is stored as:
+
+```text
+best.pt
+```
+
+The model predicts the category of the uploaded image and provides a confidence score.
+
+Example:
+
+```text
+Prediction: Mountain
+Confidence: 94.6%
+```
+
+The model can be trained on a custom dataset containing any number of image categories.
+
+---
+
+### 2. SmolVLM
+
+The project also uses:
+
+```text
+HuggingFaceTB/SmolVLM-500M-Instruct
+```
+
+**SmolVLM** is a lightweight Vision-Language Model that can analyze images and provide additional visual understanding.
+
+It can be used to generate descriptions, interpretations, or additional information about the uploaded image.
+
+---
+
+#  Project Structure
+
+```text
 image-classification/
 │
 ├── app.py
-├── index.html
-├── requirements.txt
-│
 ├── best.pt
-│
-├── static/
-│   └── ...
+├── requirements.txt
+├── README.md
 │
 ├── templates/
 │   └── index.html
 │
-├── runs/
-│   └── classify/
-│       └── ...
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
 │
-└── README.md
-Your exact folder structure may vary depending on where you keep the trained YOLO model and frontend files.
+└── runs/
+    └── classify/
+        └── ...
+```
 
-Models Used
-YOLO Image Classification
-The project uses a trained YOLO classification model to identify the category of an image.
+> The exact folder structure may vary depending on the project configuration.
 
-The trained model is stored as:
+---
 
-best.pt
-The model was trained using a custom image classification dataset.
+#  Installation
 
-SmolVLM
-The project also uses:
+## 1. Clone the Repository
 
-HuggingFaceTB/SmolVLM-500M-Instruct
-SmolVLM is a lightweight Vision-Language Model capable of analyzing images and generating useful descriptions or interpretations.
+```bash
+git clone https://github.com/ayushgupta9674-ctrl/Image-classification-.git
+```
 
-⚙️ Installation
-1. Clone the Repository
-git clone https://github.com/YOUR-USERNAME/image-classification.git
 Move into the project directory:
 
-cd image-classification
-2. Create a Virtual Environment
+```bash
+cd Image-classification-
+```
+
+---
+
+## 2. Create a Virtual Environment
+
+Create a Python virtual environment:
+
+```bash
 python -m venv venv
-Activate it on Windows:
+```
 
+### Windows
+
+Activate the environment:
+
+```bash
 venv\Scripts\activate
-3. Install Dependencies
+```
+
+### macOS / Linux
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+## 3. Install Dependencies
+
+Install all required Python packages:
+
+```bash
 pip install -r requirements.txt
-If you haven't created requirements.txt, install the main dependencies:
+```
 
+If `requirements.txt` is not available, install the main dependencies manually:
+
+```bash
 pip install flask torch torchvision transformers pillow ultralytics
-Running the Application
-Start the Flask application:
+```
 
+---
+
+#  Running the Application
+
+Start the Flask server:
+
+```bash
 python app.py
-You should see something similar to:
+```
 
+After successfully starting the application, you should see something similar to:
+
+```text
 Running on http://127.0.0.1:5000
+```
+
 Open your browser and visit:
 
+```text
 http://127.0.0.1:5000
-How to Use
-Open the web application.
-Click the Upload Image button.
-Select a JPG, JPEG, or PNG image.
-The application processes the image using the AI models.
-The predicted class and results are displayed on the screen.
-Example:
+```
 
-Input Image
-     ↓
-Image Upload
-     ↓
-YOLO Classification
-     ↓
-Prediction + Confidence
-     ↓
-SmolVLM Image Understanding
-     ↓
-Result Displayed
-Workflow
-              ┌─────────────────┐
-              │   User Image    │
-              └────────┬────────┘
-                       │
-                       ▼
-              ┌─────────────────┐
-              │  Flask Backend  │
-              └────────┬────────┘
-                       │
-                       ▼
-              ┌─────────────────┐
-              │ Image Processing│
-              └────────┬────────┘
-                       │
-             ┌─────────┴─────────┐
-             ▼                   ▼
-      ┌──────────────┐    ┌──────────────┐
-      │ YOLO Model   │    │   SmolVLM    │
-      │ Classification│    │ Vision Model │
-      └──────┬───────┘    └──────┬───────┘
-             │                   │
-             └─────────┬─────────┘
-                       ▼
-              ┌─────────────────┐
-              │ Classification  │
-              │     Result      │
-              └─────────────────┘
-Example Use Cases
-This system can be extended for:
+---
 
-Building classification
-Forest / nature classification
-Mountain detection
-Sea / beach classification
-Street scene classification
-Vehicle-related image classification
-Urban scene classification
-General image categorization
-Custom dataset classification
-Model Training
-The YOLO classification model can be trained using a dataset organized into training and validation classes.
+#  How to Use
 
-Example:
+1. Open the web application.
+2. Click **Upload Image**.
+3. Select a JPG, JPEG, or PNG image.
+4. The image is processed by the AI models.
+5. YOLO predicts the image category.
+6. The confidence score is calculated.
+7. SmolVLM can provide additional image understanding.
+8. The final result is displayed through the web interface.
 
+---
+
+#  System Workflow
+
+```text
+             ┌──────────────────┐
+             │    User Image    │
+             └────────┬─────────┘
+                      │
+                      ▼
+             ┌──────────────────┐
+             │  Flask Web App   │
+             └────────┬─────────┘
+                      │
+                      ▼
+             ┌──────────────────┐
+             │ Image Processing │
+             └────────┬─────────┘
+                      │
+             ┌────────┴─────────┐
+             │                  │
+             ▼                  ▼
+      ┌──────────────┐   ┌──────────────┐
+      │ YOLO Model   │   │   SmolVLM    │
+      │ Classification│   │ Vision Model │
+      └──────┬───────┘   └──────┬───────┘
+             │                  │
+             └────────┬─────────┘
+                      ▼
+             ┌──────────────────┐
+             │ Prediction Result│
+             └────────┬─────────┘
+                      │
+                      ▼
+             ┌──────────────────┐
+             │  Web Interface   │
+             └──────────────────┘
+```
+
+---
+
+#  Example Prediction
+
+For an uploaded image, the system may produce:
+
+```text
+Prediction: Mountain
+Confidence: 94.6%
+```
+
+The prediction and confidence can then be displayed on the web interface.
+
+---
+
+#  Model Training
+
+The YOLO classification model can be trained using a dataset organized by classes.
+
+Example dataset structure:
+
+```text
 dataset/
 │
 ├── train/
-│   ├── class_1/
-│   ├── class_2/
-│   └── class_3/
+│   ├── building/
+│   ├── forest/
+│   └── mountain/
 │
 └── val/
-    ├── class_1/
-    ├── class_2/
-    └── class_3/
-Example training command:
+    ├── building/
+    ├── forest/
+    └── mountain/
+```
 
+Train the YOLO classification model using:
+
+```bash
 yolo classify train model=yolo11n-cls.pt data=dataset epochs=20 imgsz=224
-After training, the best-performing model can be found in the generated runs directory.
+```
 
-Prediction
-The trained model generates a predicted class along with its confidence score.
+After training, the best-performing model can be found inside the generated `runs` directory.
 
-Example:
+The trained model can then be saved as:
 
-Prediction: Mountain
-Confidence: 94.6%
-The result can then be displayed through the web interface.
+```text
+best.pt
+```
 
-Future Improvements
- Add more image categories
- Improve model accuracy
- Add drag-and-drop image upload
- Add prediction history
- Add confidence graphs
- Add webcam-based classification
- Deploy the application online
- Add mobile-responsive UI
- Add multiple image classification
- Add downloadable prediction reports
-Author
-Ayush Gupta
+and used by the Flask application for prediction.
 
-B.Tech CSE Student Adamas University
+---
 
-Project Status
-Currently under development
+#  Possible Applications
 
-The core image classification and web application functionality has been implemented. Further improvements and additional classes can be added in future versions.
+The system can be adapted for different classification tasks, including:
 
-License
-This project is created for educational and academic purposes.
+*  Building classification
+*  Forest and nature classification
+*  Mountain classification
+*  Beach and sea classification
+*  Vehicle-related image classification
+*  Street scene classification
+*  Urban scene classification
+*  General image categorization
+*  Custom dataset classification
 
-You are free to modify and improve the project for learning and experimentation.
+---
+
+#  Privacy
+
+The application is designed to support **local image processing**.
+
+Images can be processed on the user's local machine without requiring them to be uploaded to an external image-hosting service.
+
+> Actual privacy behavior depends on how the Flask application and AI models are configured.
+
+---
+
+#  Future Improvements
+
+The project can be extended with:
+
+* [ ] Drag-and-drop image upload
+* [ ] Multiple image classification
+* [ ] Prediction history
+* [ ] Confidence graphs
+* [ ] Webcam-based classification
+* [ ] Mobile-responsive interface
+* [ ] More image categories
+* [ ] Improved model accuracy
+* [ ] Online deployment
+* [ ] Downloadable prediction reports
+* [ ] Real-time image classification
+* [ ] Detailed AI-generated image descriptions
+
+---
+
+#  Project Status
+
+** Currently Under Development**
+
+The core image classification and web application functionality has been implemented.
+
+Future versions can improve the user interface, model accuracy, prediction history, image understanding, and deployment capabilities.
+
+---
+
+#  Author
+
+**Ayush Gupta**
+
+B.Tech CSE Student
+**Adamas University**
+
+---
+
+#  License
+
+This project is created for **educational and academic purposes**.
+
+You are free to modify and improve the project for learning, experimentation, and academic projects.
